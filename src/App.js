@@ -1,111 +1,101 @@
-import React, { Component } from "react";
-import dayjs from "dayjs";
+import React, { Component } from 'react';
+import Ionicon from 'react-ionicons';
 
-import logo from "./logo.svg";
-import "./App.css";
-
-String.prototype.formatUnicorn =
-  String.prototype.formatUnicorn ||
-  function() {
-    "use strict";
-    var str = this.toString();
-    if (arguments.length) {
-      var t = typeof arguments[0];
-      var key;
-      var args =
-        "string" === t || "number" === t
-          ? Array.prototype.slice.call(arguments)
-          : arguments[0];
-
-      for (key in args) {
-        str = str.replace(new RegExp("\\{" + key + "\\}", "gi"), args[key]);
-      }
-    }
-
-    return str;
-  };
-
-const letter = `Auskunft gemäß Artikel 15 DSGVO
-
-Sehr geehrte Damen und Herren,
-
-gemäß Artikel 15 der Datenschutz-Grundverordnung (DSGVO) verlange ich hiermit Auskunft 
-darüber, ob bei Ihnen personenbezogene Daten über mich gespeichert sind. Falls dies der Fall ist, 
-verlange ich Auskunft über die Informationen nach Artikel 15, Absätze 1 und 2 DSGVO.
-Ich bitte um eine Bestätigung des Eingangs meines Antrags und gemäß Artikel 12 Absatz 3 
-DSGVO um Informationen zu den daraufhin ergriffenen Maßnahmen bis spätestens zum 
-folgenden Datum: {date}
-
-Bei Nichtbeachtung meiner Forderung werde ich mich an eine Datenschutzbehörde wenden. 
-Zudem behalte ich mir weitere rechtliche Schritte vor, die auch die Geltendmachung von 
-Schadenersatzansprüchen nach Artikel 82 DSGVO umfassen.
-
-Mit freundlichen Grüßen
-
-{name}`;
-
-const victims = [
-  {
-    name: "FragDenStaat",
-    email: "info@fragdenstaat.de",
-    website: "https://fragdenstaat.de"
-  },
-  {
-    name: "Schufa",
-    email: "meineSCHUFA@SCHUFA.de",
-    website: "https://www.meineschufa.de"
-  },
-  {
-    name: "Facebook",
-    email: "impressum-support@support.facebook.com",
-    website: "https://www.facebook.com"
-  }
-];
-
-function createHref(victim, name) {
-  const date = dayjs().add(4, "week");
-  const text = encodeURIComponent(letter.formatUnicorn({ name, date }));
-  return `mailto:${
-    victim.email
-  }?subject=Auskunft gemäß Artikel 15 DSGVO&body=${text}`;
-}
+import './App.css';
+import Targets from './components/Targets';
 
 class App extends Component {
-  state = { name: "" };
+  state = {
+    name: '',
+    targetSearch: '',
+    targetFilter: {},
+    targets: {},
+  };
 
-  handleChange = e => {
+  async componentDidMount() {
+    const res = await fetch('https://youdata-api.app.vis.one');
+    const targets = await res.json();
+    const targetFilter = Object.keys(targets).map(x => {
+      return {
+        [x]: true,
+      };
+    });
+
+    this.setState({
+      targets,
+      targetFilter: Object.assign({}, ...targetFilter),
+    });
+  }
+
+  handleChangeName = e => {
     this.setState({ name: e.target.value });
   };
 
-  render() {
-    const victimElements = victims.map(x => {
-      return (
-        <div>
-          <h2>{x.name}</h2>
-          <a href={x.website}>{x.website}</a>
-          <br />
-          <a href={createHref(x, this.state.name)}>
-            Email mit Email-Programm Senden
-          </a>
-        </div>
-      );
-    });
+  handleChangeTarget = e => {
+    this.setState({ targetSearch: e.target.value });
+  };
 
+  render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">YouData – BAM OIDA</h1>
+          <h1 className="App-title">youdata.eu</h1>
+          <Ionicon icon="md-at" fontSize="50px" color="black" rotate={true} />
+          <h2>
+            Du hast dein Recht auf deine Daten.<br />Nutz' es!
+          </h2>
         </header>
-        <p>Los geht's Homies!</p>
+        <div className="explanation">
+          Durch die DSGVO hast du das Recht auf Auskunft über die Daten, die ein
+          Unterhemen bei dir speichern. Wir helfen dir mir vorfourlierten
+          Emails. Damit das läuft, mache folgendes:<br />
+          <br />
+          1. richte ein Email-Programm (z.B. Thunderbird) an <br />
+          <br />
+          2. Gib deinen Namen an (für die Grußformel) <br />
+          <br />
+          3. Wähle ein Unternehmen aus <br />
+          <br />
+          4. Schicke die Email mit Email-Programm an
+        </div>
         <div>
           <p>Gib deinen Name an:</p>
           <input
-            style={{ border: "1px solid black" }}
             type="text"
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.handleChangeName}
           />
-          {this.state.name && victimElements}
+
+          <p>Suche:</p>
+          <input
+            type="text"
+            value={this.state.targetSearch}
+            onChange={this.handleChangeTarget}
+          />
+          <p>Filter:</p>
+          {Object.entries(this.state.targetFilter).map(x => (
+            <div key={x[0]}>
+              <input
+                type="checkbox"
+                checked={x[1]}
+                onChange={e =>
+                  this.setState({
+                    targetFilter: {
+                      ...this.state.targetFilter,
+                      ...{ [x[0]]: e.target.checked },
+                    },
+                  })
+                }
+              />
+              {x[0]}
+            </div>
+          ))}
+          <Targets
+            targets={this.state.targets}
+            name={this.state.name}
+            targetSearch={this.state.targetSearch}
+            targetFilter={this.state.targetFilter}
+          />
         </div>
       </div>
     );
