@@ -179,7 +179,7 @@ class App extends Component {
           </div>
           <div
             style={{
-              minHeight: '30rem',
+              minHeight: '60rem',
             }}
           >
             <Targets
