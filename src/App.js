@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const res = await fetch('https://youdata-api.app.vis.one');
+    const res = await fetch('https://api.youdata.eu');
     const targets = await res.json();
     const targetFilter = Object.keys(targets).map(x => {
       return {
@@ -46,9 +46,11 @@ class App extends Component {
           </h2>
         </header>
         <div className="explanation">
-          Durch die DSGVO hast du das Recht auf Auskunft über die Daten, die ein
-          Unterhemen bei dir speichern. Wir helfen dir mir vorfourlierten
-          Emails. Damit das läuft, mache folgendes:<br />
+          Wir generieren Emails, mit denen du Anfragen kannst, welche Daten ein
+          Unternhmen oder Behörde von dir Speichert. Gehe dazu folgendermaßen
+          vor: Durch die DSGVO hast du das Recht auf Auskunft über die Daten,
+          die ein Unterhemen bei dir speichern. Wir helfen dir mir
+          vorfourlierten Emails. Damit das läuft, mache folgendes:<br />
           <br />
           1. richte ein Email-Programm (z.B. Thunderbird) an <br />
           <br />

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <!--
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -19,14 +20,37 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
+  <title>youdata.eu</title>
+  <style>
+    nav a {
+      padding: 0 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <nav role="navigation" style="text-align: center">
+    <a href="#" id="about-link">Über</a>
+    <a href="//johannesfilter.com/contact/" target="_blank">Kontakt</a>
+    <a href="datenschutz.html" target="_blank">Datenschutz</a>
+  </nav>
+  <div hidden id="about" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">Mit der neuen Datenschutzgrundverordnung erhalten EU-Bürger*innen bessere Durchsetzungsmöglichkeiten für den Dateschutz.
+    Mehr Informationen dazu erhält man auf der Seite
+    <a href="https://deinedatendeinerechte.de/" target="_blank">DeineDatenDeineRechte.de</a>. Von dieser stammt auch das Musterschreiben, welches wir verwenden.
+    <br>
+    <br>Die ursprünglen Daten für die Unterhmen und Behörden stammen von
+    <a href="https://selbstauskunft.net/">selbstauskunft.net</a> und stehen unter CC BY-NC-SA 3.0. Du bist herzlichst dazu eingeladen, neue Unternehmen hinzuzufügen
+    bzw. die Daten zu verbessern. Die Daten werden auf Github gespeichert:
+    <a href="https://github.com/jfilter/youdata-data">https://github.com/jfilter/youdata-data</a>.
+    <br>
+    <br>Auch bei der Software können gerne Leute mithelfen:
+    <a href="https://github.com/jfilter/youdata">https://github.com/jfilter/youdata</a>
+  </div>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -36,5 +60,19 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+  <script>
+    function toggle() {
+      var ele = document.getElementById('about');
+      if (ele.style.display == "block") {
+        ele.style.display = "none";
+      }
+      else {
+        ele.style.display = "block";
+      }
+    }
+    document.getElementById('about-link').addEventListener("click", toggle);
+
+  </script>
+</body>
+
 </html>

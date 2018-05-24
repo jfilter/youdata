@@ -4,7 +4,6 @@
 
 .App-header {
   padding: 1rem;
-  border-bottom: 1px solid whitesmoke;
 }
 
 .App-title {
@@ -19,10 +18,12 @@
   padding: 1rem;
   max-width: 30rem;
   margin: 0 auto;
+  border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
 }
 
 input {
-  border: 1px solid grey;
-  padding: 1rem;
+  border: 1px solid whitesmoke;
+  font-size: 1rem;
+  padding: 0.5rem;
 }

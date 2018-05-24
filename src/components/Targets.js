@@ -5,39 +5,38 @@ import Target from './Target';
 const Targets = ({ targets, name, targetSearch, targetFilter }) => {
   const filteredTargets = Object.entries(targetFilter)
     .map(x => {
-      console.log(x);
       if (x[1] === false) return null;
       return targets[x[0]];
     })
     .filter(x => x !== null);
-  console.log('filteredTargets', filteredTargets);
 
   const flattenTargets = filteredTargets.reduce((x, y) => x.concat(y), []);
 
   const finalTargets = targetSearch.length
     ? flattenTargets.filter(
-        x => x.Name.toLowerCase().indexOf(targetSearch.toLowerCase()) >= 0
+        x => x.name.toLowerCase().indexOf(targetSearch.toLowerCase()) >= 0
       )
     : flattenTargets;
 
   const targetElemetns =
     finalTargets &&
     finalTargets.map((x, i) => (
-      <Target
-        key={i}
-        name={x['Name']}
-        email={x['Email']}
-        userName={name || ''}
-      />
+      <Target key={i} name={x.name} email={x.email} userName={name || ''} />
     ));
 
-  console.log(targetElemetns.length);
+  const nothingFound = (
+    <div style={{ padding: '1rem' }}>Die Auswahl ergab keine Treffer.</div>
+  );
 
   return (
     <div
-      style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
     >
-      {targetElemetns}
+      {targetElemetns.length ? targetElemetns : nothingFound}
     </div>
   );
 };
