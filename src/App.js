@@ -59,6 +59,7 @@ class App extends Component {
   };
 
   handleChangeTarget = e => {
+    document.getElementById('search-bar').scrollIntoView();
     this.setState({ targetSearch: e.target.value, targetCurrentFilter: null });
   };
 
@@ -88,7 +89,7 @@ class App extends Component {
             <div className="num">2</div>
             <div className="num-text">
               Gib deinen Namen an (für die Grußformel, optional):
-              <div style={{ textAlign: 'center', paddingLeft: '3rem' }}>
+              <div style={{ textAlign: 'center' }}>
                 <input
                   placeholder="Dein Name"
                   style={{ marginTop: '1rem' }}
@@ -105,8 +106,6 @@ class App extends Component {
               <div
                 style={{
                   textAlign: 'center',
-                  paddingLeft: '5rem',
-                  paddingTop: '1rem',
                 }}
               >
                 <Ionicon icon="md-arrow-down" fontSize="40px" color="black" />
@@ -144,6 +143,7 @@ class App extends Component {
               und anderen Organisationen aus.
             </h4>
             <input
+              id="search-bar"
               // style={{ width: '100%' }}
               type="text"
               value={this.state.targetSearch}
@@ -163,12 +163,15 @@ class App extends Component {
                       : 'inactive'
                   }
                   key={x[0]}
-                  onClick={() =>
+                  onClick={() => {
+                    document
+                      .getElementsByClassName('filter-container')[0]
+                      .scrollIntoView({ behavior: 'smooth', block: 'start' });
                     this.setState({
                       targetCurrentFilter:
                         this.state.targetCurrentFilter === x[0] ? null : x[0],
-                    })
-                  }
+                    });
+                  }}
                 >{`${this.displayString(x[0])} (${
                   this.state.targets[x[0]].length
                 })`}</div>

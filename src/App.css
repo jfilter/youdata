@@ -15,7 +15,7 @@
 }
 
 .explanation {
-  padding: 1rem 0 2rem;
+  padding: 1rem 0.5rem 2rem;
   max-width: 30rem;
   margin: 0 auto;
   border-top: 1px solid whitesmoke;
@@ -38,6 +38,7 @@ input {
   position: absolute;
   left: 2rem;
   top: 0.3rem;
+  padding-right: 2rem;
 }
 
 .num-container {
@@ -48,6 +49,7 @@ input {
 .controlls {
   max-width: 30rem;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
 .filter-container {
@@ -66,4 +68,24 @@ input {
 
 .filter-container div.active {
   background-color: aliceblue;
+}
+
+/* adjust for small screen sizes */
+@media (max-width: 600px) {
+  .num-container:nth-of-type(2) {
+    padding-bottom: 4rem;
+  }
+
+  .num-container:nth-of-type(4) {
+    padding-bottom: 2rem;
+  }
+
+  .num-container:nth-of-type(5) {
+    padding-bottom: 8rem;
+  }
+
+  .filter-container div {
+    padding: 0.5rem 0.25rem;
+    font-size: 80%;
+  }
 }
