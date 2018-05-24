@@ -15,15 +15,32 @@
 }
 
 .explanation {
-  padding: 1rem;
+  padding: 1rem 0 2rem;
   max-width: 30rem;
   margin: 0 auto;
   border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
+  text-align: left;
 }
 
 input {
-  border: 1px solid whitesmoke;
+  border: 1px solid lightgrey;
   font-size: 1rem;
   padding: 0.5rem;
+}
+
+.num {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.num-text {
+  position: absolute;
+  left: 2rem;
+  top: 0.3rem;
+}
+
+.num-container {
+  position: relative;
+  padding-bottom: 3rem;
 }

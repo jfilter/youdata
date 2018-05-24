@@ -25,6 +25,22 @@
     nav a {
       padding: 0 1rem;
     }
+
+    body {
+      margin: 0;
+      padding: 0.5rem 0 2rem;
+      font-family: 'Helvetica', sans-serif;
+      line-height: 1.3;
+    }
+
+    a,
+    a:hover,
+    a:active,
+    a:link,
+    a:visited {
+      color: #006bf9;
+      text-decoration: none;
+    }
   </style>
 </head>
 
@@ -35,19 +51,38 @@
   <nav role="navigation" style="text-align: center">
     <a href="#" id="about-link">Über</a>
     <a href="//johannesfilter.com/contact/" target="_blank">Kontakt</a>
-    <a href="datenschutz.html" target="_blank">Datenschutz</a>
+    <a href="#" id="privacy-link">Datenschutz</a>
   </nav>
-  <div hidden id="about" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">Mit der neuen Datenschutzgrundverordnung erhalten EU-Bürger*innen bessere Durchsetzungsmöglichkeiten für den Dateschutz.
-    Mehr Informationen dazu erhält man auf der Seite
-    <a href="https://deinedatendeinerechte.de/" target="_blank">DeineDatenDeineRechte.de</a>. Von dieser stammt auch das Musterschreiben, welches wir verwenden.
+  <div hidden id="about" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">Mit der neuen Datenschutzgrundverordnung können EU-Bürger*innen ihre Datenschutzrechte besser durchsetzen. Mehr Informationen
+    dazu erhält man auf der Seite
+    <a href="https://deinedatendeinerechte.de/" target="_blank">DeineDatenDeineRechte.de</a>. Daher stammt auch das Musterschreiben, welches hier verwendet wird.
     <br>
-    <br>Die ursprünglen Daten für die Unterhmen und Behörden stammen von
-    <a href="https://selbstauskunft.net/">selbstauskunft.net</a> und stehen unter CC BY-NC-SA 3.0. Du bist herzlichst dazu eingeladen, neue Unternehmen hinzuzufügen
-    bzw. die Daten zu verbessern. Die Daten werden auf Github gespeichert:
+    <br>Die ursprünglichen Daten für die Unternehmen und Behörden stammen von
+    <a href="https://selbstauskunft.net/">selbstauskunft.net</a> und stehen unter
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0 Lizenz</a>. Neue Daten werden unter der
+    <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> veröffentlicht. Bitte helfe dabei die alte Daten zu bereinigen und neue hinzufügen:
     <a href="https://github.com/jfilter/youdata-data">https://github.com/jfilter/youdata-data</a>.
     <br>
-    <br>Auch bei der Software können gerne Leute mithelfen:
+    <br>Verbesserungen an der Webseite sind ebenfalls gerne gesehen:
     <a href="https://github.com/jfilter/youdata">https://github.com/jfilter/youdata</a>
+  </div>
+  <div hidden id="privacy" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">
+    <h1>Datenschutzerklärung</h1>
+    <p>
+      Es werden legdenlich Log-Datein bei meinen Hostern
+      <a href="https://uberspace.de/">Uberspace</a> und
+      <a href="https://www.netcup.de/">Netcup</a> erstellt, die regelmäßig gelöscht werden. Es werden Zeit des Zugriffs, Art des Browsers, Anzahl der übertragenden
+      Bytes, von welcher Seite man kam (Referrer) und die IP-Adresse gespeichert.
+    </p>
+    <h3>Verantwortlicher</h3>
+    <p>
+      Johannes Filter
+      <br> Danziger Str. 69
+      <br> 10435 Berlin
+      <br> Deutschland
+      <br>
+      <br> hi@jfilter.de
+    </p>
   </div>
   <div id="root"></div>
   <!--
@@ -69,8 +104,24 @@
       else {
         ele.style.display = "block";
       }
+      document.getElementById('privacy').style.display = 'none';
+
     }
+
+    function togglePrivacy() {
+      var ele = document.getElementById('privacy');
+      if (ele.style.display == "block") {
+        ele.style.display = "none";
+      }
+      else {
+        ele.style.display = "block";
+      }
+      document.getElementById('about').style.display = 'none';
+
+    }
+
     document.getElementById('about-link').addEventListener("click", toggle);
+    document.getElementById('privacy-link').addEventListener("click", togglePrivacy);
 
   </script>
 </body>

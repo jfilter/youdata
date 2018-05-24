@@ -41,33 +41,74 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">youdata.eu</h1>
           <Ionicon icon="md-at" fontSize="50px" color="black" rotate={true} />
-          <h2>
-            Du hast dein Recht auf deine Daten.<br />Nutz' es!
-          </h2>
+          <h2>Nutze dein Recht auf deine Daten!</h2>
         </header>
         <div className="explanation">
-          Wir generieren Emails, mit denen du Anfragen kannst, welche Daten ein
-          Unternhmen oder Behörde von dir Speichert. Gehe dazu folgendermaßen
-          vor: Durch die DSGVO hast du das Recht auf Auskunft über die Daten,
-          die ein Unterhemen bei dir speichern. Wir helfen dir mir
-          vorfourlierten Emails. Damit das läuft, mache folgendes:<br />
+          Wir generieren Emails, die du an Unternehmen oder Behörden schickst,
+          um Auskunft über deine Daten zu erhalten. Gehe bitte folgendermaßen
+          vor:<br />
           <br />
-          1. richte ein Email-Programm (z.B. Thunderbird) an <br />
-          <br />
-          2. Gib deinen Namen an (für die Grußformel) <br />
-          <br />
-          3. Wähle ein Unternehmen aus <br />
-          <br />
-          4. Schicke die Email mit Email-Programm an
+          <div className="num-container">
+            <div className="num">1</div>
+            <div className="num-text">
+              Richte ein Email-Programm auf deinem Smartphone oder deinem
+              Computer ein (z.B. Thunderbird, Outlook oder Apple Mail).
+            </div>
+          </div>
+          <div className="num-container">
+            <div className="num">2</div>
+            <div className="num-text">
+              Gib deinen Namen an (für die Grußformel, optional):
+              <div style={{ textAlign: 'center', paddingLeft: '3rem' }}>
+                <input
+                  style={{ marginTop: '1rem' }}
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.handleChangeName}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="num-container">
+            <div className="num">3</div>
+            <div className="num-text">
+              Wähle ein Unternehmen oder Behörde aus.<br />
+              <div
+                style={{
+                  textAlign: 'center',
+                  paddingLeft: '5rem',
+                  paddingTop: '1rem',
+                }}
+              >
+                <Ionicon icon="md-arrow-down" fontSize="40px" color="black" />
+              </div>
+            </div>
+          </div>
+          <div className="num-container">
+            <div className="num">4</div>
+            <div className="num-text">
+              Schicke die Email mit deinem Email-Programm ab.
+            </div>
+          </div>
+          <div className="num-container">
+            <div className="num">5</div>
+            <div className="num-text">
+              Warte auf die Antwort und reiche ggf. Informationen nach. Wenn du
+              innerhalb der gesetzten Frist keine Antwort erhälst, hast du ein{' '}
+              <a
+                href="https://deinedatendeinerechte.de/themen/rechte-auf-beschwerde-und-vertretung-durch-verbraucherschutzorganisationen/?cat=machen"
+                target="_blank"
+              >
+                Recht auf Beschwerde
+              </a>.<br />
+              <small>
+                (Hier wird ins Zukunft wahrscheinlich noch andere Möglichkeiten
+                geben. Stay tuned.)
+              </small>
+            </div>
+          </div>
         </div>
         <div>
-          <p>Gib deinen Name an:</p>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.handleChangeName}
-          />
-
           <p>Suche:</p>
           <input
             type="text"
