@@ -2,25 +2,29 @@ import React from 'react';
 
 import Target from './Target';
 
-const Targets = ({ targets, name, targetSearch, targetFilter }) => {
-  const filteredTargets = Object.entries(targetFilter)
-    .map(x => {
-      if (x[1] === false) return null;
-      return targets[x[0]];
-    })
-    .filter(x => x !== null);
+const Targets = ({ targets, name, targetSearch, targetCurrentFilter }) => {
+  if (targetCurrentFilter === null && !targetSearch.length) return null;
+  console.log('targetSearch', targetSearch);
 
-  const flattenTargets = filteredTargets.reduce((x, y) => x.concat(y), []);
+  let targetsProcessed = null;
 
-  const finalTargets = targetSearch.length
-    ? flattenTargets.filter(
-        x => x.name.toLowerCase().indexOf(targetSearch.toLowerCase()) >= 0
-      )
-    : flattenTargets;
+  if (targetCurrentFilter !== null) {
+    targetsProcessed = targets[targetCurrentFilter];
+  }
+
+  if (targetSearch.length) {
+    const flattenTargets = Object.values(targets).reduce(
+      (x, y) => x.concat(y),
+      []
+    );
+    targetsProcessed = flattenTargets.filter(
+      x => x.name.toLowerCase().indexOf(targetSearch.toLowerCase()) >= 0
+    );
+  }
 
   const targetElemetns =
-    finalTargets &&
-    finalTargets.map((x, i) => (
+    targetsProcessed &&
+    targetsProcessed.map((x, i) => (
       <Target key={i} name={x.name} email={x.email} userName={name || ''} />
     ));
 
@@ -31,9 +35,12 @@ const Targets = ({ targets, name, targetSearch, targetFilter }) => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        // justifyContent: 'center',
+        textAlign: 'left',
+        maxWidth: '30rem',
+        margin: '0 auto',
       }}
     >
       {targetElemetns.length ? targetElemetns : nothingFound}

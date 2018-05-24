@@ -6,16 +6,26 @@ import Targets from './components/Targets';
 
 class App extends Component {
   state = {
+    inputName: '',
     name: '',
     targetSearch: '',
     targetFilter: {},
+    targetCurrentFilter: null,
     targets: {},
+    numTargets: '...',
   };
+
+  componentWillMount() {
+    this.nameInputTimer = null;
+  }
 
   async componentDidMount() {
     const res = await fetch('https://api.youdata.eu');
     const targets = await res.json();
+    let numTargets = 0;
+
     const targetFilter = Object.keys(targets).map(x => {
+      numTargets += targets[x].length;
       return {
         [x]: true,
       };
@@ -23,16 +33,33 @@ class App extends Component {
 
     this.setState({
       targets,
+      numTargets,
       targetFilter: Object.assign({}, ...targetFilter),
     });
   }
 
+  displayString = str => {
+    return str
+      .split('-')
+      .map(x => x.charAt(0).toUpperCase() + x.slice(1))
+      .join(' ')
+      .replace('ae', 'ä')
+      .replace('oe', 'ö')
+      .replace('ue', 'ü');
+  };
+
+  delayedUpdate = () => {
+    this.setState({ name: this.state.inputName });
+  };
+
   handleChangeName = e => {
-    this.setState({ name: e.target.value });
+    clearTimeout(this.nameInputTimer);
+    this.setState({ inputName: e.target.value });
+    this.nameInputTimer = setTimeout(this.delayedUpdate, 3000);
   };
 
   handleChangeTarget = e => {
-    this.setState({ targetSearch: e.target.value });
+    this.setState({ targetSearch: e.target.value, targetCurrentFilter: null });
   };
 
   render() {
@@ -44,15 +71,17 @@ class App extends Component {
           <h2>Nutze dein Recht auf deine Daten!</h2>
         </header>
         <div className="explanation">
-          Wir generieren Emails, die du an Unternehmen oder Behörden schickst,
-          um Auskunft über deine Daten zu erhalten. Gehe bitte folgendermaßen
-          vor:<br />
+          Wir helfen dir easy Unternehmen oder Behörden nach deinen Daten
+          anzufragen. Voraussetzung ist die Benutzung eines Email Clients.<br />
           <br />
           <div className="num-container">
             <div className="num">1</div>
             <div className="num-text">
-              Richte ein Email-Programm auf deinem Smartphone oder deinem
-              Computer ein (z.B. Thunderbird, Outlook oder Apple Mail).
+              Richte einen Email Client auf deinem Smartphone oder deinem
+              Computer ein (z.B.{' '}
+              <a href="https://www.thunderbird.net/" target="_blank">
+                Thunderbird
+              </a>).
             </div>
           </div>
           <div className="num-container">
@@ -61,9 +90,9 @@ class App extends Component {
               Gib deinen Namen an (für die Grußformel, optional):
               <div style={{ textAlign: 'center', paddingLeft: '3rem' }}>
                 <input
+                  placeholder="Dein Name"
                   style={{ marginTop: '1rem' }}
                   type="text"
-                  value={this.state.name}
                   onChange={this.handleChangeName}
                 />
               </div>
@@ -87,7 +116,7 @@ class App extends Component {
           <div className="num-container">
             <div className="num">4</div>
             <div className="num-text">
-              Schicke die Email mit deinem Email-Programm ab.
+              Versende die Email mit deinem Email Client.
             </div>
           </div>
           <div className="num-container">
@@ -109,36 +138,54 @@ class App extends Component {
           </div>
         </div>
         <div>
-          <p>Suche:</p>
-          <input
-            type="text"
-            value={this.state.targetSearch}
-            onChange={this.handleChangeTarget}
-          />
-          <p>Filter:</p>
-          {Object.entries(this.state.targetFilter).map(x => (
-            <div key={x[0]}>
-              <input
-                type="checkbox"
-                checked={x[1]}
-                onChange={e =>
-                  this.setState({
-                    targetFilter: {
-                      ...this.state.targetFilter,
-                      ...{ [x[0]]: e.target.checked },
-                    },
-                  })
-                }
-              />
-              {x[0]}
-            </div>
-          ))}
-          <Targets
-            targets={this.state.targets}
-            name={this.state.name}
-            targetSearch={this.state.targetSearch}
-            targetFilter={this.state.targetFilter}
-          />
+          <div className="controlls">
+            <h4>
+              Wähle aus insgesamt {this.state.numTargets} Unternehmen, Behörden
+              und anderen Organisationen aus.
+            </h4>
+            <input
+              // style={{ width: '100%' }}
+              type="text"
+              value={this.state.targetSearch}
+              onChange={this.handleChangeTarget}
+              placeholder="Suche..."
+            />
+          </div>
+          <p>... oder welche Kategorie möchtest du sehen?</p>
+          <div className="filter-container">
+            {Object.entries(this.state.targetFilter)
+              .sort()
+              .map(x => (
+                <div
+                  className={
+                    x[0] === this.state.targetCurrentFilter
+                      ? 'active'
+                      : 'inactive'
+                  }
+                  key={x[0]}
+                  onClick={() =>
+                    this.setState({
+                      targetCurrentFilter:
+                        this.state.targetCurrentFilter === x[0] ? null : x[0],
+                    })
+                  }
+                >{`${this.displayString(x[0])} (${
+                  this.state.targets[x[0]].length
+                })`}</div>
+              ))}
+          </div>
+          <div
+            style={{
+              minHeight: '30rem',
+            }}
+          >
+            <Targets
+              targets={this.state.targets}
+              name={this.state.name}
+              targetSearch={this.state.targetSearch}
+              targetCurrentFilter={this.state.targetCurrentFilter}
+            />
+          </div>
         </div>
       </div>
     );

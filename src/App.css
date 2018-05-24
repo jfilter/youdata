@@ -44,3 +44,26 @@ input {
   position: relative;
   padding-bottom: 3rem;
 }
+
+.controlls {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto 2rem;
+  max-width: 60rem;
+  justify-content: center;
+}
+
+.filter-container div {
+  border: 1px solid whitesmoke;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.filter-container div.active {
+  background-color: aliceblue;
+}
