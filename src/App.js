@@ -69,17 +69,17 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">youdata.eu</h1>
           <Ionicon icon="md-at" fontSize="50px" color="black" rotate={true} />
-          <h2>Nutze dein Recht auf deine Daten!</h2>
+          <h2>Nutz Dein Recht auf Deine Daten!</h2>
         </header>
         <div className="explanation">
-          Wir helfen dir easy Unternehmen oder Behörden nach deinen Daten
-          anzufragen. Voraussetzung ist die Benutzung eines Email Clients.<br />
+          Wir helfen Dir, easy Unternehmen oder Behörden nach Deinen Daten
+          anzufragen. Voraussetzung ist die Benutzung eines E-Mail-Clients.<br />
           <br />
           <div className="num-container">
             <div className="num">1</div>
             <div className="num-text">
-              Richte einen Email Client auf deinem Smartphone oder deinem
-              Computer ein (z.B.{' '}
+              Richte einen E-Mail-Client auf Deinem Smartphone oder Deinem
+              Computer ein (z.&nbsp;B.{' '}
               <a href="https://www.thunderbird.net/" target="_blank">
                 Thunderbird
               </a>).
@@ -88,7 +88,7 @@ class App extends Component {
           <div className="num-container">
             <div className="num">2</div>
             <div className="num-text">
-              Gib deinen Namen an (für die Grußformel, optional):
+              Gib Deinen Namen an (für die Grußformel, optional):
               <div style={{ textAlign: 'center' }}>
                 <input
                   placeholder="Dein Name"
@@ -102,7 +102,7 @@ class App extends Component {
           <div className="num-container">
             <div className="num">3</div>
             <div className="num-text">
-              Wähle ein Unternehmen oder Behörde aus.<br />
+              Wähle ein Unternehmen oder eine Behörde aus.<br />
               <div
                 style={{
                   textAlign: 'center',
@@ -115,14 +115,14 @@ class App extends Component {
           <div className="num-container">
             <div className="num">4</div>
             <div className="num-text">
-              Versende die Email mit deinem Email Client.
+              Versende die E-Mail mit Deinem E-Mail-Client.
             </div>
           </div>
           <div className="num-container">
             <div className="num">5</div>
             <div className="num-text">
-              Warte auf die Antwort und reiche ggf. Informationen nach. Wenn du
-              innerhalb der gesetzten Frist keine Antwort erhälst, hast du ein{' '}
+              Warte auf die Antwort und reiche ggf. Informationen nach. Wenn Du
+              innerhalb der gesetzten Frist keine Antwort erhälst, hast Du ein{' '}
               <a
                 href="https://deinedatendeinerechte.de/themen/rechte-auf-beschwerde-und-vertretung-durch-verbraucherschutzorganisationen/?cat=machen"
                 target="_blank"
@@ -130,7 +130,7 @@ class App extends Component {
                 Recht auf Beschwerde
               </a>.<br />
               <small>
-                (Hier wird ins Zukunft wahrscheinlich noch andere Möglichkeiten
+                (Hier wird es in Zukunft wahrscheinlich noch andere Möglichkeiten
                 geben. Stay tuned.)
               </small>
             </div>
@@ -148,10 +148,10 @@ class App extends Component {
               type="text"
               value={this.state.targetSearch}
               onChange={this.handleChangeTarget}
-              placeholder="Suche..."
+              placeholder="Suche ..."
             />
           </div>
-          <p>... oder welche Kategorie möchtest du sehen?</p>
+          <p>... oder welche Kategorie möchtest Du sehen?</p>
           <div className="filter-container">
             {Object.entries(this.state.targetFilter)
               .sort()
