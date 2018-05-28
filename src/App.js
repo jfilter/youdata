@@ -122,7 +122,7 @@ class App extends Component {
             <div className="num">5</div>
             <div className="num-text">
               Warte auf die Antwort und reiche ggf. Informationen nach. Wenn Du
-              innerhalb der gesetzten Frist keine Antwort erhälst, hast Du ein{' '}
+              innerhalb der gesetzten Frist keine Antwort erhältst, hast Du ein{' '}
               <a
                 href="https://deinedatendeinerechte.de/themen/rechte-auf-beschwerde-und-vertretung-durch-verbraucherschutzorganisationen/?cat=machen"
                 target="_blank"
