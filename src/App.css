@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  padding: 1rem;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.explanation {
+  padding: 1rem 0.5rem 2rem;
+  max-width: 30rem;
+  margin: 0 auto;
+  border-top: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+  text-align: left;
+}
+
+input {
+  border: 1px solid lightgrey;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.num {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.num-text {
+  position: absolute;
+  left: 2rem;
+  top: 0.3rem;
+  padding-right: 2rem;
+}
+
+.num-container {
+  position: relative;
+  padding-bottom: 3rem;
+}
+
+.controlls {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto 2rem;
+  max-width: 60rem;
+  justify-content: center;
+}
+
+.filter-container div {
+  border: 1px solid whitesmoke;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.filter-container div.active {
+  background-color: aliceblue;
+}
+
+/* adjust for small screen sizes */
+@media (max-width: 600px) {
+  .num-container:nth-of-type(2) {
+    padding-bottom: 4rem;
+  }
+
+  .num-container:nth-of-type(4) {
+    padding-bottom: 2rem;
+  }
+
+  .num-container:nth-of-type(5) {
+    padding-bottom: 7rem;
+  }
+
+  .filter-container div {
+    padding: 0.5rem 0.25rem;
+    font-size: 80%;
+  }
+}

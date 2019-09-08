@@ -1,0 +1,47 @@
+{
+  "name": "youdata",
+  "homepage": "https://youdata.eu",
+  "version": "0.1.0",
+  "private": true,
+  "repository": "git@github.com:jfilter/youdata.git",
+  "author": "Johannes Filter <hi@jfilter.de>",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.6.2",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-ionicons": "^2.1.6",
+    "react-lazyload": "^2.3.0",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "es5"
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.12.1"
+  }
+}

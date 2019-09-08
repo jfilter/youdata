@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="youdata.eu #GDPR #DSGVO" />
+  <meta property="og:description"
+    content="Wir helfen Dir, easy Unternehmen oder Behörden nach Deinen Daten anzufragen." />
+  <!-- best size for Facebook: 1300 X 630 px -->
+  <meta property="og:image" content="https://youdata.eu/thumbnail.jpg" />
+  <meta property="og:url" content="https://youdata.eu">
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="youdata.eu" />
+  <meta property="article:author" content="http://facebook.com/filter0" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@fil_ter" />
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>youdata.eu</title>
+  <style>
+    nav a {
+      padding: 0 1rem;
+    }
+
+    body {
+      margin: 0;
+      padding: 0.5rem 0 2rem;
+      font-family: 'Helvetica', sans-serif;
+      line-height: 1.3;
+    }
+
+    a,
+    a:hover,
+    a:active,
+    a:link,
+    a:visited {
+      color: #006bf9;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <nav role="navigation" style="text-align: center">
+    <a href="#" id="about-link">Über</a>
+    <a href="//johannesfilter.com/contact/" target="_blank">Kontakt</a>
+    <a href="#" id="privacy-link">Datenschutz</a>
+  </nav>
+  <div hidden id="about" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">Mit
+    der neuen Datenschutzgrundverordnung können EU-Bürger*innen ihre Datenschutzrechte besser durchsetzen. Mehr
+    Informationen dazu erhältst Du auf der Seite
+    <a href="https://deinedatendeinerechte.de/" target="_blank">DeineDatenDeineRechte.de</a>. Von dort stammt auch das
+    Musterschreiben, welches wir hier verwenden.
+    <br>
+    <br>Die ursprünglichen Daten für die Unternehmen und Behörden stammen von
+    <a href="https://selbstauskunft.net/">selbstauskunft.net</a> und stehen unter
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">CC BY-NC-SA 3.0 Lizenz</a>. Neue Daten werden unter der
+    <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> veröffentlicht. Bitte hilf dabei, die alten
+    Daten zu bereinigen und neue hinzuzufügen:
+    <a href="https://github.com/jfilter/youdata-data">https://github.com/jfilter/youdata-data</a>.
+    <br>
+    <br>Verbesserungen an der Webseite sind ebenfalls gerne gesehen:
+    <a href="https://github.com/jfilter/youdata">https://github.com/jfilter/youdata</a>
+  </div>
+  <div hidden id="privacy" style="max-width: 30rem; margin: 1rem auto; padding: 1rem; border: 1px solid whitesmoke">
+    <h1>Datenschutzerklärung</h1>
+    <p>
+      Es werden lediglich Log-Dateien bei meinen Hostern
+      <a href="https://uberspace.de/">Uberspace</a> und
+      <a href="https://www.netcup.de/">Netcup</a> erstellt, die regelmäßig gelöscht werden. Es werden Zeit des Zugriffs,
+      Art des Browsers, Anzahl der übertragenden
+      Bytes, von welcher Seite Du kamst (Referrer) und die IP-Adresse gespeichert.
+    </p>
+    <h3>Verantwortlicher</h3>
+    <p>
+      Johannes Filter
+      <br> hi@jfilter.de
+    </p>
+  </div>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script>
+    function toggle() {
+      var ele = document.getElementById('about');
+      if (ele.style.display == "block") {
+        ele.style.display = "none";
+      }
+      else {
+        ele.style.display = "block";
+      }
+      document.getElementById('privacy').style.display = 'none';
+
+    }
+
+    function togglePrivacy() {
+      var ele = document.getElementById('privacy');
+      if (ele.style.display == "block") {
+        ele.style.display = "none";
+      }
+      else {
+        ele.style.display = "block";
+      }
+      document.getElementById('about').style.display = 'none';
+
+    }
+
+    document.getElementById('about-link').addEventListener("click", toggle);
+    document.getElementById('privacy-link').addEventListener("click", togglePrivacy);
+
+  </script>
+</body>
+
+</html>
